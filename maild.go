@@ -1,24 +1,26 @@
 package maild
 
 import (
-	"strings"
 	"container/list"
+	"strings"
 )
 
 // mail access structor
 type Mas struct {
+	Sess    string
 	Tag     string
 	Command string
 	Parames string
 }
 
-func InitMas(msg string) *Mas {
+func InitMas(sess, msg string) *Mas {
 	raw := strings.SplitN(msg, " ", 3)
 	length := len(raw)
 	if length < 2 {
 		return nil
 	}
 	ret := &Mas{
+		Sess:    sess,
 		Tag:     raw[0],
 		Command: raw[1],
 		Parames: "",
